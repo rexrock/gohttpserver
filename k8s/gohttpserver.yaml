@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: gohttpserver
+spec:
+  selector:
+    matchLabels:
+      app: gohttpserver
+  template:
+    metadata:
+      labels:
+        app: gohttpserver
+    spec:
+      nodeSelector:
+        gohttpserver: enable
+      containers:
+          - image: rexrock/gohttpserver:latest
+            imagePullPolicy: IfNotPresent
+            name: gohttpserver

@@ -1,7 +1,7 @@
 FROM golang:1.13
 WORKDIR /app/gohttpserver
 ADD . /app/gohttpserver
-RUN CGO_ENABLED=0 GOOS=linux go build -ldflags '-X main.VERSION=docker' -o gohttpserver
+RUN GOPROXY=https://goproxy.io CGO_ENABLED=0 GOOS=linux go build -ldflags '-X main.VERSION=docker' -o gohttpserver
 
 FROM debian:stretch
 WORKDIR /app
